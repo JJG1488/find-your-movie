@@ -1,0 +1,56 @@
+body {
+    background-color: #000000;
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+  color: white;
+  font-family: 'Martel', serif;
+}
+  
+  #topbarleft {
+    background-image: linear-gradient(black, purple);
+    min-height: 5vh;
+  }
+  #topbarmain {
+    background-image: linear-gradient(black, purple);
+    min-height: 5vh;
+  }
+  
+  #topbarright {
+    background-image: linear-gradient(black, purple);
+    min-height: 5vh;
+  }
+  
+  .menu-text {
+    color: white;
+    font-family: 'Martel', serif;
+  }
+
+  .callout {
+    background-color: rgb(104, 104, 104);
+    color: white;
+    background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+    font-family: 'Martel', serif;
+  }
+
+  #bottom-menu {
+    background-image: linear-gradient(black, purple);
+    min-height: 5vh;
+    color: white;
+    font-family: 'Martel', serif;
+  }
+  .bottom-row {
+    padding: 0px;
+  }
+
+  .hidden {
+    visibility: hidden;
+  }
+
+  #movie-pic {
+    padding-left: 150px;
+
+  }
+  @media only screen and (max-width: 375px) {
+    #movie-pic {
+      position: relative;
+    }
+  }
