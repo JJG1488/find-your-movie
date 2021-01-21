@@ -5,8 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Foundation | Welcome</title>
     <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+    <link rel="stylesheet" href="./styles/style-1.css">
   </head>
   <body>
+
+    <!-- Trigger/Open The Modal -->
+<button id="myBtn">Open Modal</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>That movie is not on Netflix, Hulu, or Amazon</p>
+  </div>
+
+</div>
 
     <!-- Start Top Bar -->
     <div class="top-bar">
@@ -32,9 +47,9 @@
       <div class="row column text-center">
         <h1>Changing the World Through Design</h1>
         <div class="input-group input-group-rounded">
-            <input class="input-group-field" type="search">
+            <input id="userInput" class="input-group-field" type="search">
             <div class="input-group-button">
-              <input type="submit" class="button secondary" value="Search">
+              <input type="submit" id="btn" class="button secondary" value="Search">
             </div>
           </div>
           
@@ -83,6 +98,10 @@
         <li><a href="#"><div class="stat">18</div><span>Logos</span></a></li>
       </ul>
     </div>
+
+    <ul id="search-history">
+
+    </ul>
 
     <hr>
 
@@ -140,10 +159,12 @@
       </ul>
     </div>
 
+
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
     <script>
       $(document).foundation();
     </script>
+    <script src="scripts/script.js"></script>
   </body>
 </html>
