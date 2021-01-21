@@ -5,6 +5,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Foundation | Welcome</title>
     <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+
+    <link rel="stylesheet" href="./styles/style-1.css">
+  </head>
+  <body>
+
+    <!-- Trigger/Open The Modal -->
+<button id="myBtn">Open Modal</button>
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p>That movie is not on Netflix, Hulu, or Amazon</p>
+  </div>
+
+</div>
+
+
     <link rel="stylesheet" href="css\foundationstyle.css">
     <link rel="stylesheet" href="css\style.css">
     <link rel="preconnect" href="https://fonts.gstatic.com">
@@ -13,6 +33,7 @@
   <body>
 
     
+
     <!-- Start Top Bar -->
     <div class="top-bar" id="topbarmain">
       <div class="top-bar-left">
@@ -27,9 +48,11 @@
       <div class="row column text-center">
         <h1>Input Your Movie/Show Here!</h1>
         <div class="input-group input-group-rounded">
+
             <input class="input-group-field" type="search" id="userInput">
             <div class="input-group-button">
               <input type="submit" class="button secondary" value="Search" id="btn">
+
             </div>
           </div>
           
@@ -67,17 +90,18 @@
       </div>
     </div>
 
-    <div class="row column bottom-row">
-      <ul class="menu" id="bottom-menu">
+
       </ul>
     </div>
+
 
     <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
     <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
     <script>
       $(document).foundation();
     </script>
-    <script src="scripts/script.js">
-    </script>
+
+    <script src="scripts/script.js"></script>
+
   </body>
 </html>
