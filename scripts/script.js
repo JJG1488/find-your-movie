@@ -1,19 +1,25 @@
 // + $("#userInput").val() + "&begin_date=20120101&end_date=20121231&api-key=n8ZpZeGBjpYFymrs0Lcvt46sbEJDkNuY"
 
+//  ------------------------------ Global Variables -------------------------------
+let searchHistory = [];
 
 $("#btn").on("click", () => {
 
-
     let userInput = $("#userInput").val();
+    var queryURL = "https://watch-here.p.rapidapi.com/wheretowatch?title=" + userInput + "&mediaType=tv%20show";
 
-    var queryURL = "https://netflix-unofficial.p.rapidapi.com/api/search";
+    // ------------------------------------ Setting up local storage -----------------------
 
-    // ----------------------------------------Where to watch API--------------------------------------------------
+    searchHistory.append(userInput.val());
+
+    window.localStorage.setItem('searchHIstory', searchHistory);
+
+    // ---------------------------------------- Where to watch API --------------------------------------------------
 
     const settings = {
         "async": true,
         "crossDomain": true,
-        "url": "https://watch-here.p.rapidapi.com/wheretowatch?title=" + userInput + "&mediaType=tv%20show",
+        "url": queryURL,
         "method": "POST",
         "headers": {
             "content-type": "application/json",
@@ -33,7 +39,7 @@ $("#btn").on("click", () => {
 
     });
 
-    // ----------------------------------------IMDB API --------------------------------------------------
+    // ---------------------------------------- IMDB API --------------------------------------------------
 
     const settings2 = {
         "async": true,
@@ -47,6 +53,13 @@ $("#btn").on("click", () => {
     };
 
     $.ajax(settings2).done(function (response2) {
+        // ---------------------------------- create search history list ------------------------
+        let ul = document.createElement("ul").textContent = "search history";
+        let li = document.createElement("li");
+        let t = document.createTextNode(userInput.val());
+        li.appendChild(t);
+        ul.appendChild(li);
+
         console.log(response2);
     });
     $(".hidden").removeClass("hidden")
