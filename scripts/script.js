@@ -1,4 +1,5 @@
 // + $("#userInput").val() + "&begin_date=20120101&end_date=20121231&api-key=n8ZpZeGBjpYFymrs0Lcvt46sbEJDkNuY"
+
 //  ------------------------------ Global Variables -------------------------------
 let searchHistory = [];
 
@@ -61,5 +62,6 @@ $("#btn").on("click", () => {
 
         console.log(response2);
     });
-
+    $(".hidden").removeClass("hidden")
 })
+
