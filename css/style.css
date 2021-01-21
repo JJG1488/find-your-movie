@@ -40,3 +40,17 @@ body {
   .bottom-row {
     padding: 0px;
   }
+
+  .hidden {
+    visibility: hidden;
+  }
+
+  #movie-pic {
+    padding-left: 150px;
+
+  }
+  @media only screen and (max-width: 375px) {
+    #movie-pic {
+      position: relative;
+    }
+  }

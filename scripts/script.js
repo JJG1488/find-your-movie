@@ -1,7 +1,8 @@
- // + $("#userInput").val() + "&begin_date=20120101&end_date=20121231&api-key=n8ZpZeGBjpYFymrs0Lcvt46sbEJDkNuY"
+// + $("#userInput").val() + "&begin_date=20120101&end_date=20121231&api-key=n8ZpZeGBjpYFymrs0Lcvt46sbEJDkNuY"
 
 
- $("#btn").on("click", () => {
+$("#btn").on("click", () => {
+
 
     let userInput = $("#userInput").val();
 
@@ -20,7 +21,7 @@
             "x-rapidapi-host": "watch-here.p.rapidapi.com"
         },
         "processData": false,
-        "data": "{\n    \"mediaType\": \"tv show\",\n    \"title\": \""+ userInput +"\"\n}"
+        "data": "{\n    \"mediaType\": \"tv show\",\n    \"title\": \"" + userInput + "\"\n}"
     };
 
     $.ajax(settings).done(function (response) {
@@ -37,7 +38,7 @@
     const settings2 = {
         "async": true,
         "crossDomain": true,
-        "url": "https://movies-tvshows-data-imdb.p.rapidapi.com/?type=get-movies-by-title&title="+ userInput,
+        "url": "https://movies-tvshows-data-imdb.p.rapidapi.com/?type=get-movies-by-title&title=" + userInput,
         "method": "GET",
         "headers": {
             "x-rapidapi-key": "69d811a2bemsh7406c1b512a31f1p10322djsn64aee285beed",
@@ -48,5 +49,6 @@
     $.ajax(settings2).done(function (response2) {
         console.log(response2);
     });
-
+    $(".hidden").removeClass("hidden")
 })
+
