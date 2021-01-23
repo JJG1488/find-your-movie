@@ -1,108 +1,119 @@
 <!doctype html>
 <html class="no-js" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Foundation | Welcome</title>
-    <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
 
-    <link rel="stylesheet" href="./styles/style-1.css">
-  </head>
-  <body>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Where's It At?</title>
+  <link rel="stylesheet" href="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.min.css">
+  <link rel="stylesheet" href="css\foundationstyle.css">
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Martel:wght@300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css\style.css">
+</head>
 
-    <!-- Trigger/Open The Modal -->
-<button id="myBtn">Open Modal</button>
+<body>
 
-<!-- The Modal -->
-<div id="myModal" class="modal">
+  <!-- Trigger/Open The Modal -->
+  <button id="myBtn">Open Modal</button>
 
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>That movie is not on Netflix, Hulu, or Amazon</p>
+  <!-- The Modal -->
+  <div id="myModal" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+      <span class="close">&times;</span>
+      <p>That movie is not on Netflix, Hulu, or Amazon</p>
+    </div>
+
   </div>
 
-</div>
-
-    <link rel="stylesheet" href="css\foundationstyle.css">
-    <link rel="stylesheet" href="css\style.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Martel:wght@300&display=swap" rel="stylesheet">
-  </head>
-  <body>  
-
-    <!-- Start Top Bar -->
-    <div class="top-bar" id="topbarmain">
-      <div class="top-bar-left">
-        <ul class="menu" id="topbarleft">
-          <li class="menu-text">Video Search Program</li>
-        </ul>
-      </div>
-    </div>
-    <!-- End Top Bar -->
-
-    <div class="callout large">
-      <div class="row column text-center">
-        <h1>Input Your Movie/Show Here!</h1>
-        <div class="input-group input-group-rounded">
-
-            <input class="input-group-field" type="search" id="userInput">
-            <div class="input-group-button">
-              <input type="submit" class="button secondary" value="Search" id="btn">
-
-            </div>
-          </div>
-          
-      </div>
-    </div>
-    <!-- Push = right hand side, Pull=left side.-->
-
-    <div class="row">
-
-      <div class="medium-6 columns medium-push-6 hidden" id="movie-pic">
-
-        <img class="thumbnail" src="https://placehold.it/182x268">
-      </div>
-      <div class="medium-6 columns medium-pull-6 hidden" id="movie-info">
-        <h2>Movie Info:</h2>
-        <p>Movie Info goes here</p>
-      </div>
-    </div>
-
-    <div class="row">
 
 
-      <div class="medium-4 columns netflix hidden" id="netflix-box">
-
-        <h3>Netflix</h3>
-        <p><a href="" id="netflix-text">Netflix link goes here</a></p>
-      </div>
-
-      <div class="medium-4 columns hulu hidden" id="hulu-box" class="hidden">
-
-        <h3>Hulu</h3>
-        <p> <a href="" id="hulu-text">Hulu link goes here</a></p>
-      </div>
-
-      <div class="medium-4 columns amazon hidden" id="amazon-box">
-
-        <h3>Amazon</h3>
-        <p><a href="" id="amazon-text">Amazon link goes here</a></p>
-      </div>
-    </div>
-
-
+  <!-- Start Top Bar -->
+  <div class="top-bar" id="topbarmain">
+    <div class="top-bar-left">
+      <ul class="menu" id="topbarleft">
+        <li class="menu-text">Video Search Program</li>
       </ul>
     </div>
+  </div>
+  <!-- End Top Bar -->
+
+  <div class="callout large">
+    <div class="row column text-center">
+      <h1>Input Your Movie/Show Here!</h1>
+      <div class="input-group input-group-rounded">
+
+        <input class="input-group-field" type="search" id="userInput">
+        <div class="input-group-button">
+          <input type="submit" class="button secondary" value="Search" id="btn">
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!-- Push = right hand side, Pull=left side.-->
+
+  <div class="row">
+
+    <div class="medium-6 columns medium-push-6 hidden" id="movie-pic">
+
+      <img class="thumbnail" src="https://placehold.it/182x268">
+    </div>
+    <div class="medium-6 columns medium-pull-6 hidden" id="movie-info">
+      <h1 class="title">Movie Info:</h1>
+      <h5 class="rated">Rated:</h5>
+      <h5 class="release-date">Release Date:</h5>
+      <h5 class="runtime">Runtime:</h5>
+      <h5>Description:</h5>
+      <p class="description">Movie Info goes here</p>
 
 
-    <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
-    <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
-    <script>
-      $(document).foundation();
-    </script>
+    </div>
+  </div>
 
-    <script src="scripts/script.js"></script>
+  <div class="row">
 
-  </body>
+
+    <div class="medium-4 columns netflix hidden" id="netflix-box">
+
+      <h3>Netflix</h3>
+      <p><a href="" id="netflix-text">Netflix link goes here</a></p>
+    </div>
+
+    <div class="medium-4 columns hulu hidden" id="hulu-box">
+
+      <h3>Hulu</h3>
+      <p> <a href="" id="hulu-text">Hulu link goes here</a></p>
+    </div>
+
+    <div class="medium-4 columns amazon hidden" id="amazon-box">
+
+      <h3>Amazon</h3>
+      <p><a href="" id="amazon-text">Amazon link goes here</a></p>
+    </div>
+  </div>
+  <div class="row">
+    <div class="medium-6 columns recommended-column">
+      <h4 class="hidden">Recommended:</h4>
+      <ul id="recommended"></ul>
+    </div>
+    <div class="medium-6 columns search-history-column">
+      <h4 class="hidden">Previous Searches:</h4>
+      <ul id="search-history"></ul>
+    </div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+  <script src="https://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"></script>
+  <script>
+    $(document).foundation();
+  </script>
+
+  <script src="scripts/script.js"></script>
+
+</body>
+
 </html>
