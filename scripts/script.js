@@ -222,6 +222,7 @@ function getMyMovie(event, input) {
                     let t = document.createTextNode(input);
                     li.appendChild(t);
                     ul.appendChild(li);
+                    li.classList.add("search-history-list");
                     // Displays Document
                     $(".hidden").removeClass("hidden")
                     $(".recommended-list").on("click", function (event) {
@@ -229,12 +230,11 @@ function getMyMovie(event, input) {
                         console.log(recommendedInput);
                         getMyMovie(event, recommendedInput);
                     })
+                    $("")
                 });
             });
         });
     });
-
-
 }
 
 $("#btn").on("click", (event) => {
