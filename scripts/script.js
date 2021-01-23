@@ -230,7 +230,10 @@ function getMyMovie(event, input) {
                         console.log(recommendedInput);
                         getMyMovie(event, recommendedInput);
                     })
-                    $("")
+                    $(".search-history-list").on("click", function (event) {
+                        let searchHistoryInput = $(this).text();
+                        getMyMovie(event, searchHistoryInput);
+                    })
                 });
             });
         });

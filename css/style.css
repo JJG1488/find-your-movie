@@ -135,3 +135,10 @@ a{
 .recommended-list:hover{
   color: rgb(198, 181, 196);
 }
+
+.search-history-list{
+  cursor: pointer;
+}
+.search-history-list:hover{
+  color: rgb(198, 181, 196);
+}
