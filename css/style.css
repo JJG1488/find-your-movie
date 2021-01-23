@@ -132,3 +132,6 @@ a{
 .recommended-list{
   cursor: pointer;
 }
+.recommended-list:hover{
+  color: rgb(198, 181, 196);
+}
