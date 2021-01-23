@@ -121,4 +121,14 @@ body {
   color: white;
   cursor: initial;
 }
+.linkBroke:visited{
+  color: white;
+}
 
+a{
+  color: rgb(158, 95, 162);
+}
+
+.recommended-list{
+  cursor: pointer;
+}
