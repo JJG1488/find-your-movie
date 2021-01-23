@@ -12,69 +12,75 @@ let majorStreamServices = ["Amazon", "Netflix", "Hulu"];
 
 
 
-function findNetflix(api, userInput) {
+function findNetflix(api, input) {
     let netflixLinkEl = $('#netflix-text');
     for (let index = 0; index < api.length; index++) {
+        let streamLink = "";
         if (api[index].Watch === "Netflix") {
-            let streamLink = api[index].WatchUrl
+            streamLink = api[index].WatchUrl
             netflixLinkEl.attr("href", streamLink)
-            netflixLinkEl.text('You can find ' + userInput + ', here on Netflix');
+            netflixLinkEl.text('You can find ' + input + ', here on Netflix');
             netflixLinkEl.removeAttr("linkBroke");
             netflixLinkEl.attr("class", "linkWorks");
             break;
         } else {
+            streamLink = "";
+            netflixLinkEl.attr("href", streamLink)
             netflixLinkEl.text("Not available on Netflix");
             netflixLinkEl.removeAttr("linkWorks");
             netflixLinkEl.attr("class", "linkBroke");
-            // netflixLinkEl.contents().unwrap();
         }
     }
 }
-function findHulu(api, userInput) {
+function findHulu(api, input) {
     let huluLinkEl = $('#hulu-text');
     for (let index = 0; index < api.length; index++) {
+        let streamLink = "";
         if (api[index].Watch === "Hulu") {
-            let streamLink = api[index].WatchUrl
+            streamLink = api[index].WatchUrl
             huluLinkEl.attr("href", streamLink)
-            huluLinkEl.text('You can find ' + userInput + ', here on Hulu');
+            huluLinkEl.text('You can find ' + input + ', here on Hulu');
             huluLinkEl.removeAttr("linkBroke");
             huluLinkEl.attr("class", "linkWorks");
             break;
         } else {
+            streamLink = "";
+            huluLinkEl.attr("href", streamLink)
             huluLinkEl.text("Not available on Hulu");
             huluLinkEl.removeAttr("linkWorks");
             huluLinkEl.attr("class", "linkBroke");
-            // huluLinkEl.contents().unwrap();
         }
     }
 }
-function findAmazon(api, userInput) {
+function findAmazon(api, input) {
     let amazonLinkEl = $('#amazon-text');
     for (let index = 0; index < api.length; index++) {
+        let streamLink = "";
         if (api[index].Watch === "Amazon") {
-            let streamLink = api[index].WatchUrl
+            streamLink = api[index].WatchUrl
             amazonLinkEl.attr("href", streamLink)
-            amazonLinkEl.text('You can find ' + userInput + ', here on Amazon');
+            amazonLinkEl.text('You can find ' + input + ', here on Amazon');
             amazonLinkEl.removeAttr("linkBroke");
             amazonLinkEl.attr("class", "linkWorks");
             break;
         } else {
+            streamLink = "";
+            amazonLinkEl.attr("href", streamLink)
             amazonLinkEl.text("Not available on Amazon");
             amazonLinkEl.removeAttr("linkWorks");
             amazonLinkEl.attr("class", "linkBroke");
-            // amazonLinkEl.contents().unwrap();
         }
     }
 }
 
-function getMyMovie(event){
+function getMyMovie(event, input) {
     event.preventDefault();
-    let userInput = $("#userInput").val();
-    var queryURL = "https://watch-here.p.rapidapi.com/wheretowatch?title=" + userInput + "&mediaType=tv%20show";
+
+    var queryURL = "https://watch-here.p.rapidapi.com/wheretowatch?title=" + input + "&mediaType=tv%20show";
 
     // ------------------------------------ Setting up local storage -------------------------------------------------
 
-    searchHistory.push(userInput);
+    searchHistory.push(input);
     window.localStorage.setItem('searchHistory', searchHistory);
 
     // ---------------------------------------- Where to watch API --------------------------------------------------
@@ -90,7 +96,7 @@ function getMyMovie(event){
             "x-rapidapi-host": "watch-here.p.rapidapi.com"
         },
         "processData": false,
-        "data": "{\n    \"mediaType\": \"tv show\",\n    \"title\": \"" + userInput + "\"\n}"
+        "data": "{\n    \"mediaType\": \"tv show\",\n    \"title\": \"" + input + "\"\n}"
     };
     // ------------------------------------------------------------- First Ajax Call ------------------------------------------------
     $.ajax(settings).success(function (response) {
@@ -99,9 +105,9 @@ function getMyMovie(event){
 
         // Which Streaming Service Available
 
-        findNetflix(parsedResponse, userInput);
-        findHulu(parsedResponse, userInput);
-        findAmazon(parsedResponse, userInput);
+        findNetflix(parsedResponse, input);
+        findHulu(parsedResponse, input);
+        findAmazon(parsedResponse, input);
 
         if (parsedResponse[0].Watch === "Amazon" || parsedResponse[0].Watch === "Netflix" || parsedResponse[0].Watch === "Hulu") {
             // console.log(response["search-results"]);
@@ -140,7 +146,7 @@ function getMyMovie(event){
     const settings2 = {
         "async": true,
         "crossDomain": true,
-        "url": "https://movies-tvshows-data-imdb.p.rapidapi.com/?type=get-movies-by-title&title=" + userInput,
+        "url": "https://movies-tvshows-data-imdb.p.rapidapi.com/?type=get-movies-by-title&title=" + input,
         "method": "GET",
         "headers": {
             "x-rapidapi-key": "69d811a2bemsh7406c1b512a31f1p10322djsn64aee285beed",
@@ -152,7 +158,7 @@ function getMyMovie(event){
         console.log(response2);
         let response2Results = response2.movie_results;
         for (let i = 0; i < response2Results.length; i++) {
-            if ((response2Results[i].title).toLowerCase() == userInput.toLowerCase()) {
+            if ((response2Results[i].title).toLowerCase() == input.toLowerCase()) {
                 imdbID = response2Results[i].imdb_id;
                 console.log(imdbID);
             }
@@ -172,61 +178,68 @@ function getMyMovie(event){
             console.log(response3);
             let moviePoster = response3.poster;
             $(".thumbnail").attr("src", moviePoster);
-        });
-        // title / description / rated / release_date / runtime
-        const settings4 = {
-            "async": true,
-            "crossDomain": true,
-            "url": "https://movies-tvshows-data-imdb.p.rapidapi.com/?type=get-movie-details&imdb=" + imdbID,
-            "method": "GET",
-            "headers": {
-                "x-rapidapi-key": "69d811a2bemsh7406c1b512a31f1p10322djsn64aee285beed",
-                "x-rapidapi-host": "movies-tvshows-data-imdb.p.rapidapi.com"
-            }
-        };
-        $.ajax(settings4).done(function (response4) {
-            console.log(response4);
-            $('.title').text(response4.title);
-            $('.rated').text("Rated: " + response4.rated);
-            $('.release-date').text("Release Date: " + response4.release_date);
-            $('.runtime').text("Runtime: " + response4.runtime + " minutes");
-            $('.description').text(response4.description);
-        });
-        //If we want to expand to recommended movies here are recommended titles.
-        const settings5 = {
-            "async": true,
-            "crossDomain": true,
-            "url": "https://movies-tvshows-data-imdb.p.rapidapi.com/?type=get-similar-movies&imdb=" + imdbID + "&page=1",
-            "method": "GET",
-            "headers": {
-                "x-rapidapi-key": "69d811a2bemsh7406c1b512a31f1p10322djsn64aee285beed",
-                "x-rapidapi-host": "movies-tvshows-data-imdb.p.rapidapi.com"
-            }
-        };
-        $.ajax(settings5).done(function (response5) {
-            console.log(response5);
-            let recommendedMovies = response5.movie_results
-            $('#recommended').empty();
-            for (let index = 0; index < recommendedMovies.length; index++) {
-                $('#recommended').append("<li>" + recommendedMovies[index].title + "</li>");  
-            }
+            // title / description / rated / release_date / runtime
+            const settings4 = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://movies-tvshows-data-imdb.p.rapidapi.com/?type=get-movie-details&imdb=" + imdbID,
+                "method": "GET",
+                "headers": {
+                    "x-rapidapi-key": "69d811a2bemsh7406c1b512a31f1p10322djsn64aee285beed",
+                    "x-rapidapi-host": "movies-tvshows-data-imdb.p.rapidapi.com"
+                }
+            };
+            $.ajax(settings4).done(function (response4) {
+                console.log(response4);
+                $('.title').text(response4.title);
+                $('.rated').text("Rated: " + response4.rated);
+                $('.release-date').text("Release Date: " + response4.release_date);
+                $('.runtime').text("Runtime: " + response4.runtime + " minutes");
+                $('.description').text(response4.description);
+                //If we want to expand to recommended movies here are recommended titles.
+                const settings5 = {
+                    "async": true,
+                    "crossDomain": true,
+                    "url": "https://movies-tvshows-data-imdb.p.rapidapi.com/?type=get-similar-movies&imdb=" + imdbID + "&page=1",
+                    "method": "GET",
+                    "headers": {
+                        "x-rapidapi-key": "69d811a2bemsh7406c1b512a31f1p10322djsn64aee285beed",
+                        "x-rapidapi-host": "movies-tvshows-data-imdb.p.rapidapi.com"
+                    }
+                };
+                $.ajax(settings5).done(function (response5) {
+                    console.log(response5);
+                    let recommendedMovies = response5.movie_results
+                    $('#recommended').empty();
+                    for (let index = 0; index < recommendedMovies.length; index++) {
+
+                        $('#recommended').append(`<li class="recommended-list hidden">${recommendedMovies[index].title}</li>`);
+                    }
+
+                    // -------------------- Search History --------------------- //
+                    let ul = document.getElementById("search-history");
+                    let li = document.createElement("li");
+                    let t = document.createTextNode(input);
+                    li.appendChild(t);
+                    ul.appendChild(li);
+                    // Displays Document
+                    $(".hidden").removeClass("hidden")
+                    $(".recommended-list").on("click", function (event) {
+                        let recommendedInput = $(this).text();
+                        console.log(recommendedInput);
+                        getMyMovie(event, recommendedInput);
+                    })
+                });
+            });
         });
     });
 
-// -------------------- Search History --------------------- //
-    let ul = document.getElementById("search-history");
-    let li = document.createElement("li");
-    let t = document.createTextNode(userInput);
-    li.appendChild(t);
-    ul.appendChild(li);
 
-
-
-    $(".hidden").removeClass("hidden")
 }
 
 $("#btn").on("click", (event) => {
-    getMyMovie(event)
+    let userInput = $("#userInput").val();
+    getMyMovie(event, userInput);
 });
 
 
