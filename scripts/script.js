@@ -2,7 +2,12 @@
 
 //  ------------------------------ Global Variables -------------------------------===================================
 
-let searchHistory = [];
+ let searchHistory = [];
+ //(localStorage.getItem("searchHistory"));
+// if (searchHistory === null){
+//     searchHistory = [];
+// }
+
 let foundArray = [];
 let majorStreamServices = ["Amazon", "Netflix", "Hulu"];
 
@@ -73,14 +78,32 @@ function findAmazon(api, input) {
     }
 }
 
+// previous search history function //
+function previousSearch(searchHistory) {
+    let ul = document.getElementById("search-history");
+    $('#search-history').empty();
+    for (let index = 0; index < searchHistory.length; index++) {
+        let li = document.createElement("li");
+        let t = document.createTextNode(searchHistory[index]);
+        li.appendChild(t);
+        ul.appendChild(li);
+        li.classList.add("search-history-list");
+    }
+}
+
+
 function getMyMovie(event, input) {
     event.preventDefault();
 
     var queryURL = "https://watch-here.p.rapidapi.com/wheretowatch?title=" + input + "&mediaType=tv%20show";
 
     // ------------------------------------ Setting up local storage -------------------------------------------------
+    if (searchHistory.includes(input)) {
+    }
+    else {
+        searchHistory.push(input);
+    }
 
-    searchHistory.push(input);
     window.localStorage.setItem('searchHistory', searchHistory);
 
     // ---------------------------------------- Where to watch API --------------------------------------------------
@@ -108,10 +131,14 @@ function getMyMovie(event, input) {
         findNetflix(parsedResponse, input);
         findHulu(parsedResponse, input);
         findAmazon(parsedResponse, input);
-
-        if (parsedResponse[0].Watch === "Amazon" || parsedResponse[0].Watch === "Netflix" || parsedResponse[0].Watch === "Hulu") {
+        console.log(parsedResponse);
+        let newArray = [];
+        for (let index = 0; index < parsedResponse.length; index++) {
+            newArray.push(parsedResponse[index].Watch)
+        }
+        console.log(newArray);
+        if (newArray.includes("Amazon") || newArray.includes("Netflix") || newArray.includes("Hulu") ) {
             // console.log(response["search-results"]);
-
             // alert("Its on!!!!!")
             console.log(parsedResponse[0].Watch);
             // console.log(parsedResponse[0]["Watch"]);
@@ -138,6 +165,7 @@ function getMyMovie(event, input) {
             // console.log(response);
             // console.log(parsedResponse[0]["Watch"]);
             console.log(parsedResponse[0].Watch);
+
         }
     })
 
@@ -217,12 +245,8 @@ function getMyMovie(event, input) {
                     }
 
                     // -------------------- Search History --------------------- //
-                    let ul = document.getElementById("search-history");
-                    let li = document.createElement("li");
-                    let t = document.createTextNode(input);
-                    li.appendChild(t);
-                    ul.appendChild(li);
-                    li.classList.add("search-history-list");
+                    previousSearch(searchHistory);
+
                     // Displays Document
                     $(".hidden").removeClass("hidden")
                     $(".recommended-list").on("click", function (event) {
@@ -232,6 +256,7 @@ function getMyMovie(event, input) {
                     })
                     $(".search-history-list").on("click", function (event) {
                         let searchHistoryInput = $(this).text();
+                        console.log(searchHistoryInput);
                         getMyMovie(event, searchHistoryInput);
                     })
                 });
