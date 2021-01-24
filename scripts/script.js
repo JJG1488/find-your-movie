@@ -1,9 +1,44 @@
 // + $("#userInput").val() + "&begin_date=20120101&end_date=20121231&api-key=n8ZpZeGBjpYFymrs0Lcvt46sbEJDkNuY"
+//check for Navigation Timing API support
+
+//  ------------------------------ Local Storage -------------------------------===================================
+const inpValue = document.getElementById('userInput')
+const btnInsert = document.getElementById('btn')
+const lsArray = []
+const lsOutput = document.getElementById('lsOutput');
+const lastItemInLocalStorage = JSON.parse(window.localStorage.getItem("lsArray"))
+
+console.log(lastItemInLocalStorage[lastItemInLocalStorage.length - 1]);
+
+btnInsert.onclick = function () {
+
+    const value = inpValue.value;
+
+    lsArray.push(value);
+
+    if (value) {
+        localStorage.setItem("lsArray", JSON.stringify(lsArray));
+
+        // location.reload()
+
+    }
+}
+
+for (let index = 0; index < localStorage.length; index++) {
+
+    // const element = array[index];
+
+    const key = localStorage.key(index);
+
+    const value = localStorage.getItem(key);
+
+    lsOutput.innerHTML += `${key}: ${value}<br>`;
+
+}
 
 //  ------------------------------ Global Variables -------------------------------===================================
-
- let searchHistory = [];
- //(localStorage.getItem("searchHistory"));
+let searchHistory = [];
+//(localStorage.getItem("searchHistory"));
 // if (searchHistory === null){
 //     searchHistory = [];
 // }
@@ -92,8 +127,8 @@ function previousSearch(searchHistory) {
 }
 
 
-function getMyMovie(event, input) {
-    event.preventDefault();
+function getMyMovie(input) {
+    // event.preventDefault();
 
     var queryURL = "https://watch-here.p.rapidapi.com/wheretowatch?title=" + input + "&mediaType=tv%20show";
 
@@ -122,7 +157,7 @@ function getMyMovie(event, input) {
         "data": "{\n    \"mediaType\": \"tv show\",\n    \"title\": \"" + input + "\"\n}"
     };
     // ------------------------------------------------------------- First Ajax Call ------------------------------------------------
-    $.ajax(settings).success(function (response) {
+    $.ajax(settings).done(function (response) {
 
         let parsedResponse = JSON.parse(response)
 
@@ -137,7 +172,7 @@ function getMyMovie(event, input) {
             newArray.push(parsedResponse[index].Watch)
         }
         console.log(newArray);
-        if (newArray.includes("Amazon") || newArray.includes("Netflix") || newArray.includes("Hulu") ) {
+        if (newArray.includes("Amazon") || newArray.includes("Netflix") || newArray.includes("Hulu")) {
             // console.log(response["search-results"]);
             // alert("Its on!!!!!")
             console.log(parsedResponse[0].Watch);
@@ -181,11 +216,12 @@ function getMyMovie(event, input) {
             "x-rapidapi-host": "movies-tvshows-data-imdb.p.rapidapi.com"
         }
     };
-    $.ajax(settings2).success(function (response2) {
+    $.ajax(settings2).done(function (response2) {
         let imdbID = "";
         console.log(response2);
         let response2Results = response2.movie_results;
         for (let i = 0; i < response2Results.length; i++) {
+            
             if ((response2Results[i].title).toLowerCase() == input.toLowerCase()) {
                 imdbID = response2Results[i].imdb_id;
                 console.log(imdbID);
@@ -252,12 +288,12 @@ function getMyMovie(event, input) {
                     $(".recommended-list").on("click", function (event) {
                         let recommendedInput = $(this).text();
                         console.log(recommendedInput);
-                        getMyMovie(event, recommendedInput);
+                        getMyMovie(recommendedInput);
                     })
                     $(".search-history-list").on("click", function (event) {
                         let searchHistoryInput = $(this).text();
                         console.log(searchHistoryInput);
-                        getMyMovie(event, searchHistoryInput);
+                        getMyMovie(searchHistoryInput);
                     })
                 });
             });
@@ -265,9 +301,26 @@ function getMyMovie(event, input) {
     });
 }
 
-$("#btn").on("click", (event) => {
+$("#btn").on("click", function() {
     let userInput = $("#userInput").val();
-    getMyMovie(event, userInput);
+    getMyMovie(userInput);
 });
 
+if (window.performance) {
+    console.info("window.performance works fine on this browser");
+  }
+  console.info(performance);
+  if (performance.type == performance.TYPE_RELOAD) {
+    //   event.preventDefault()
+    console.info( "This page is reloaded" );
+    getMyMovie(lastItemInLocalStorage[lastItemInLocalStorage.length - 1])
+  } else {
+    console.info( "This page is not reloaded");
+  }
+
+ 
+  $( document ).ajaxError(function() {
+    console.log("slkjfalkj")
+  });
+  
 
