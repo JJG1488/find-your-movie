@@ -17,11 +17,10 @@ const lastItemInLocalStorage = JSON.parse(window.localStorage.getItem("lsArray")
 
 let searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
 if (searchHistory == undefined || searchHistory == null){
-    searchHistory = ["Shrek"];
+    searchHistory = ["shrek"];
 }
 let lastSearchedInput = searchHistory[(searchHistory.length - 1)];
-let foundArray = [];
-let majorStreamServices = ["Amazon", "Netflix", "Hulu"];
+
 
 // creating a function for the button click for local storage
 btnInsert.onclick = function () {
@@ -57,7 +56,7 @@ for (let index = 0; index < localStorage.length; index++) {
 
 //  ------------------------------ Global Variables -------------------------------===================================
 // setting searchHistory array
-let searchHistory = [];
+// let searchHistory = [];
 // setting foundArray
 let foundArray = [];
 // setting array for major streaming services
@@ -135,7 +134,7 @@ function findAmazon(api, input) {
 function previousSearch(searchHistory) {
     let ul = document.getElementById("search-history");
     $('#search-history').empty();
-    console.log(searchHistory)
+    // console.log(searchHistory)
     for (let index = 0; index < searchHistory.length; index++) {
         let li = document.createElement("li");
         let t = document.createTextNode(searchHistory[index]);
@@ -154,13 +153,18 @@ function getMyMovie(input) {
     
     if (searchHistory.includes(input)) {
 
-    }
+    }else if (searchHistory.length === 5) {
 
-    else {
+        searchHistory.shift(0);
+        searchHistory.push(input);
+
+    } else {
 
         searchHistory.push(input);
     }
-    console.log(searchHistory)
+
+    // console.log(searchHistory)
+
     localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
 
 
@@ -195,7 +199,8 @@ function getMyMovie(input) {
         findNetflix(parsedResponse, input);
         findHulu(parsedResponse, input);
         findAmazon(parsedResponse, input);
-        // console.log(parsedResponse);
+        console.log("response 1 below");
+        console.log(parsedResponse);
         let newArray = [];
         for (let index = 0; index < parsedResponse.length; index++) {
             newArray.push(parsedResponse[index].Watch)
@@ -218,6 +223,8 @@ function getMyMovie(input) {
     };
     $.ajax(settings2).done(function (response2) {
         let imdbID = "";
+        console.log("response 2 below");
+        console.log(response2);
         // console.log(response2.search_results);
         let response2Results = response2.movie_results;
         // console.log(response2Results);
