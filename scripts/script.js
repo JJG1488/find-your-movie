@@ -2,56 +2,56 @@
 //check for Navigation Timing API support
 
 //  ------------------------------ Local Storage -------------------------------===================================
+// getting user input value
 const inpValue = document.getElementById('userInput')
+// selecting btn from html
 const btnInsert = document.getElementById('btn')
+// setting an array for localStorage
 const lsArray = []
+// selecting a place to display local storage
 const lsOutput = document.getElementById('lsOutput');
+// setting up the last item in the local storage to be selected with getItem() method
 const lastItemInLocalStorage = JSON.parse(window.localStorage.getItem("lsArray"))
-
+// logging last item in local storage to check value
 console.log(lastItemInLocalStorage[lastItemInLocalStorage.length - 1]);
 
+// creating a function for the button click for local storage
 btnInsert.onclick = function () {
-
+// setting user input value to the variable value
     const value = inpValue.value;
-
+// pushing user input value to the local storage array lsArray
     lsArray.push(value);
-
+// considtional for if there is a value
     if (value) {
+// if there is a value, stringify lsArray and set that value in the local storage
         localStorage.setItem("lsArray", JSON.stringify(lsArray));
-
+// used to check and make sure that data persists//----> if location.reload() is not commented out,
+// then the previous search history will ONLY show the last result
         // location.reload()
-
     }
 }
 
+// setting for loop for the local storage
 for (let index = 0; index < localStorage.length; index++) {
-
-    // const element = array[index];
-
+// setting const for local storage key
     const key = localStorage.key(index);
-
+// setting getItem() method for the loop to get the key from the local storage
     const value = localStorage.getItem(key);
-
+// placing the key and value into html selected tag
     lsOutput.innerHTML += `${key}: ${value}<br>`;
 
 }
 
-//  ------------------------------ Global Variables -------------------------------===================================
-let searchHistory = [];
-//(localStorage.getItem("searchHistory"));
-// if (searchHistory === null){
-//     searchHistory = [];
-// }
 
+//  ------------------------------ Global Variables -------------------------------===================================
+// setting searchHistory array
+let searchHistory = [];
+// setting foundArray
 let foundArray = [];
+// setting array for major streaming services
 let majorStreamServices = ["Amazon", "Netflix", "Hulu"];
 
-
-
-
-
-
-
+// creating function to find Netflix
 function findNetflix(api, input) {
     let netflixLinkEl = $('#netflix-text');
     for (let index = 0; index < api.length; index++) {
@@ -141,6 +141,10 @@ function getMyMovie(input) {
 
     window.localStorage.setItem('searchHistory', searchHistory);
 
+    $("#search-history").on("click", "li", function () {
+        getMyMovie($(this).text());
+    });
+
     // ---------------------------------------- Where to watch API --------------------------------------------------
 
     const settings = {
@@ -221,7 +225,7 @@ function getMyMovie(input) {
         console.log(response2);
         let response2Results = response2.movie_results;
         for (let i = 0; i < response2Results.length; i++) {
-            
+
             if ((response2Results[i].title).toLowerCase() == input.toLowerCase()) {
                 imdbID = response2Results[i].imdb_id;
                 console.log(imdbID);
@@ -300,27 +304,18 @@ function getMyMovie(input) {
         });
     });
 }
-
-$("#btn").on("click", function() {
+if (performance.type == performance.TYPE_RELOAD) {
+    getMyMovie(lastItemInLocalStorage[lastItemInLocalStorage.length - 1])
+} 
+$("#btn").on("click", function () {
     let userInput = $("#userInput").val();
     getMyMovie(userInput);
 });
 
-if (window.performance) {
-    console.info("window.performance works fine on this browser");
-  }
-  console.info(performance);
-  if (performance.type == performance.TYPE_RELOAD) {
-    //   event.preventDefault()
-    console.info( "This page is reloaded" );
-    getMyMovie(lastItemInLocalStorage[lastItemInLocalStorage.length - 1])
-  } else {
-    console.info( "This page is not reloaded");
-  }
 
- 
-  $( document ).ajaxError(function() {
+$(document).ajaxError(function getMyMovie() {
     console.log("slkjfalkj")
-  });
-  
+});
+
+
 

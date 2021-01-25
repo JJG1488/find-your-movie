@@ -12,8 +12,9 @@ This webpage allows a user to search for a movie or tv show and have the luxury 
 
 ## Preview
 
-![altText] (......)
-[viewPage] (url.....)
+![pagePreview] (<img src="./images/img.png" alt="pagePreview"/>)
+
+[pageLink] (url: <https://jjg1488.github.io/group-project/>)
 
 ---
 
