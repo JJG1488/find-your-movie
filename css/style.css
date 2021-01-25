@@ -22,7 +22,8 @@ body {
   .menu-text {
     color: white;
     font-family: 'Martel', serif;
-    font-size: 125%;
+    font-size: 120%;
+
   }
 
   .callout {
@@ -121,7 +122,7 @@ body {
   color: rgb(182, 139, 185);
 }
 .linkWorks:visited{
-  color: rgb(158, 95, 162);
+  color:rgb(158, 95, 162);
 }
 .linkBroke{
   color: white;

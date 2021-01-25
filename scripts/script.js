@@ -15,6 +15,14 @@ const lastItemInLocalStorage = JSON.parse(window.localStorage.getItem("lsArray")
 // logging last item in local storage to check value
 // console.log(lastItemInLocalStorage[lastItemInLocalStorage.length - 1]);
 
+let searchHistory = JSON.parse(localStorage.getItem("searchHistory"));
+if (searchHistory == undefined || searchHistory == null){
+    searchHistory = ["Shrek"];
+}
+let lastSearchedInput = searchHistory[(searchHistory.length - 1)];
+let foundArray = [];
+let majorStreamServices = ["Amazon", "Netflix", "Hulu"];
+
 // creating a function for the button click for local storage
 btnInsert.onclick = function () {
     // setting user input value to the variable value
@@ -32,6 +40,7 @@ btnInsert.onclick = function () {
     }
     getMyMovie(value)
 }
+
 
 
 // setting for loop for the local storage
@@ -60,6 +69,7 @@ if (performance.type == performance.TYPE_RELOAD) {
 }
 
 // creating function to find Netflix
+
 function findNetflix(api, input) {
     let netflixLinkEl = $('#netflix-text');
     for (let index = 0; index < api.length; index++) {
@@ -125,6 +135,7 @@ function findAmazon(api, input) {
 function previousSearch(searchHistory) {
     let ul = document.getElementById("search-history");
     $('#search-history').empty();
+    console.log(searchHistory)
     for (let index = 0; index < searchHistory.length; index++) {
         let li = document.createElement("li");
         let t = document.createTextNode(searchHistory[index]);
@@ -134,12 +145,13 @@ function previousSearch(searchHistory) {
     }
 }
 
+
 function getMyMovie(input) {
-    // event.preventDefault();
 
     var queryURL = "https://watch-here.p.rapidapi.com/wheretowatch?title=" + input + "&mediaType=tv%20show";
-
+    
     // ------------------------------------ Setting up local storage -------------------------------------------------
+    
     if (searchHistory.includes(input)) {
 
     }
@@ -148,8 +160,8 @@ function getMyMovie(input) {
 
         searchHistory.push(input);
     }
-
-    window.localStorage.setItem('searchHistory', searchHistory);
+    console.log(searchHistory)
+    localStorage.setItem('searchHistory', JSON.stringify(searchHistory));
 
 
     // function for search on the li element
@@ -265,7 +277,6 @@ function getMyMovie(input) {
                     let recommendedMovies = response5["movie_results"];
                     $('#recommended').empty();
                     for (let index = 0; index < recommendedMovies.length; index++) {
-
                         $('#recommended').append(`<li class="recommended-list hidden">${recommendedMovies[index].title}</li>`);
                     }
 
@@ -273,22 +284,33 @@ function getMyMovie(input) {
                     previousSearch(searchHistory);
 
                     // Displays Document
-                    $(".hidden").removeClass("hidden");
-                    $(".recommended-list").on("click", function (event) {
+
+                    $(".hidden").removeClass("hidden")
+                    $(".recommended-list").on("click", function () {
                         let recommendedInput = $(this).text();
-                        // console.log(recommendedInput);
+                        console.log(recommendedInput);
+
                         getMyMovie(recommendedInput);
                     })
-                    $(".search-history-list").on("click", function (event) {
+                    $(".search-history-list").on("click", function () {
                         let searchHistoryInput = $(this).text();
-                        // console.log(searchHistoryInput);
-                        getMyMovie(searchHistoryInput);
+
+                      getMyMovie(searchHistoryInput);
                     })
                 });
             });
         });
     });
 }
+
+
+// window.onload = getMyMovie(lastSearchedInput);
+
+// $("#btn").on("click", () => {
+//     let userInput = $("#userInput").val();
+//     getMyMovie(userInput);
+// });
+
 
 function modalAlert() {
 
