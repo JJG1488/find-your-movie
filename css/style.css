@@ -22,7 +22,7 @@ body {
   .menu-text {
     color: white;
     font-family: 'Martel', serif;
-    font-size: 185%;
+    font-size: 125%;
   }
 
   .callout {
@@ -90,6 +90,11 @@ body {
   padding: 20px;
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* show class */
+.show {
+  display: block;
 }
 
 /* The Close Button */
