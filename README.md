@@ -1,4 +1,4 @@
-# group-project
+# Find It Here(Movie)
 
 ## User Story
 
@@ -73,3 +73,11 @@ Using multiple API's to help the user to find their movie of choice and its stre
 The take away from this project was to display how the face to face and incremental/ close parts of agile development helps to push a project forward in a flexible and progressive way.
 
 ---
+
+## Credit
+
+[link] (<https://www.transparenttextures.com/cubes.html>)
+
+Background credit goes to:
+
+Cubes, by Mike Hearn
