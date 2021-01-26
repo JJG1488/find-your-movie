@@ -1,104 +1,133 @@
 body {
-    background-color: #000000;
+  background-color: #000000;
   background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
   color: white;
   font-family: 'Martel', serif;
 }
-  
-  #topbarleft {
-    background-image: linear-gradient(black, purple);
-    min-height: 5vh;
-  }
-  #topbarmain {
-    background-image: linear-gradient(black, purple);
-    min-height: 5vh;
-  }
-  
-  #topbarright {
-    background-image: linear-gradient(black, purple);
-    min-height: 5vh;
-  }
-  
-  .menu-text {
-    color: white;
-    font-family: 'Martel', serif;
-    font-size: 120%;
 
-  }
+#topbarleft {
+  background-image: linear-gradient(black, purple);
+  min-height: 5vh;
+}
 
-  .callout {
-    background-color: rgb(104, 104, 104);
-    color: white;
-    background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
-    font-family: 'Martel', serif;
-  }
+#topbarmain {
+  background-image: linear-gradient(black, purple);
+  min-height: 5vh;
+}
 
-  #bottom-menu {
-    background-image: linear-gradient(black, purple);
-    min-height: 5vh;
-    color: white;
-    font-family: 'Martel', serif;
-  }
-  .bottom-row {
-    padding: 0px;
-  }
+#topbarright {
+  background-image: linear-gradient(black, purple);
+  min-height: 5vh;
+}
 
-  .hidden {
-    visibility: hidden;
-  }
+.menu-text {
+  color: white;
+  font-family: 'Martel', serif;
+  font-size: 120%;
+}
 
+.callout {
+  background-color: rgb(104, 104, 104);
+  color: white;
+  background-image: url("https://www.transparenttextures.com/patterns/cubes.png");
+  font-family: 'Martel', serif;
+}
+
+#bottom-menu {
+  background-image: linear-gradient(black, purple);
+  min-height: 5vh;
+  color: white;
+  font-family: 'Martel', serif;
+}
+
+.bottom-row {
+  padding: 0px;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+#movie-pic {
+  padding-left: 150px;
+}
+
+.thumbnail {
+  height: 75%;
+  width: 75%;
+}
+
+.recommended-column {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+.search-history-column {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+@media only screen and (max-width: 375px) {
   #movie-pic {
-    padding-left: 150px;
+    position: relative;
+  }
+}
 
-  }
-  .thumbnail{
-    height: 75%;
-    width: 75%;
-  }
-  .recommended-column{
-    padding-left: 5%;
-    padding-right: 5%;
-  }
-  .search-history-column{
-    padding-left: 5%;
-    padding-right: 5%;
-  }
-  @media only screen and (max-width: 375px) {
-    #movie-pic {
-      position: relative;
-    }
-  }
-   /* --------------------------------------THE MODAL---------------------------------- */
+/* --------------------------------------THE MODAL---------------------------------- */
 
-  /* The Modal (background) */
+/* The Modal (background) */
+
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0);
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+
+  border-radius: 90%;
+
 }
 
 /* Modal Content/Box */
+
 .modal-content {
+  color: #000000;
   background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
+  margin: 15% auto;
+  /* 15% from the top and centered */
   padding: 20px;
   border: 1px solid #888;
-  width: 80%; /* Could be more or less, depending on screen size */
+  width: 80%;
+  /* Could be more or less, depending on screen size */
 }
 
 /* show class */
+
 .show {
   display: block;
 }
 
+.blur {
+   /* Add the blur effect */
+   filter: blur(8px);
+   -webkit-filter: blur(8px);
+}
+
 /* The Close Button */
+
 .close {
   color: #aaa;
   float: right;
@@ -106,49 +135,55 @@ body {
   font-weight: bold;
 }
 
-.close:hover,
-.close:focus {
+.close:hover, .close:focus {
   color: black;
   text-decoration: none;
   cursor: pointer;
 }
 
-
 /*  Changing the color of unusable links  */
-.linkWorks{
+
+.linkWorks {
   color: rgb(158, 95, 162);
 }
-.linkWorks:hover{
+
+.linkWorks:hover {
   color: rgb(182, 139, 185);
 }
-.linkWorks:visited{
-  color:rgb(158, 95, 162);
+
+.linkWorks:visited {
+  color: rgb(158, 95, 162);
 }
-.linkBroke{
+
+.linkBroke {
   color: white;
 }
-.linkBroke:hover{
+
+.linkBroke:hover {
   color: white;
   cursor: initial;
 }
-.linkBroke:visited{
+
+.linkBroke:visited {
   color: white;
 }
 
-a{
+a {
   color: rgb(158, 95, 162);
 }
 
-.recommended-list{
+.recommended-list {
   cursor: pointer;
 }
-.recommended-list:hover{
+
+.recommended-list:hover {
   color: rgb(198, 181, 196);
 }
 
-.search-history-list{
+.search-history-list {
   cursor: pointer;
 }
-.search-history-list:hover{
+
+.search-history-list:hover {
   color: rgb(198, 181, 196);
 }
